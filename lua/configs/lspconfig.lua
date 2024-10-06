@@ -10,6 +10,8 @@ lspconfig.servers = {
   "rust_analyzer",
 }
 
+vim.diagnostic.config({ virtual_text = true })
+
 -- list of servers configured with default config.
 local default_servers = {
   "pyright",
@@ -32,6 +34,17 @@ lspconfig.clangd.setup({
   end,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
+  settings = {
+    clangd = {
+      InlayHints = {
+        Designators = true,
+        Enabled = true,
+        ParameterNames = true,
+        DeducedTypes = true,
+      },
+      fallbackFlags = { "-std=c++20" },
+    },
+  },
 })
 
 lspconfig.efm.setup({
@@ -71,6 +84,7 @@ lspconfig.lua_ls.setup({
         maxPreload = 100000,
         preloadFileSize = 10000,
       },
+      hint = { enable = true },
     },
   },
 })

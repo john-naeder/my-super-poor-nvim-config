@@ -1,5 +1,32 @@
 return {
   {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {},
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    config = function()
+      require("noice").setup(require("configs.noice-nvim"))
+    end,
+  },
+
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      timeout = 2500,
+      max_height = function()
+        return math.floor(vim.o.lines * 0.75)
+      end,
+      max_width = function()
+        return math.floor(vim.o.columns * 0.75)
+      end,
+      background_colour = "#000000",
+    },
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -48,6 +75,18 @@ return {
     dependencies = { "nvim-lint" },
     config = function()
       require("configs.mason-lint")
+    end,
+  },
+
+  {
+    "MysticalDevil/inlay-hints.nvim",
+    event = "LspAttach",
+    dependencies = { "neovim/nvim-lspconfig" },
+    config = function()
+      require("inlay-hints").setup({
+        commands = { enable = true },
+        autocmd = { enable = true },
+      })
     end,
   },
 

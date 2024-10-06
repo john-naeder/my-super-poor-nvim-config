@@ -18,8 +18,12 @@ lint.linters.luacheck.args = {
   "-",
 }
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+vim.api.nvim_create_autocmd({
+  "BufEnter",
+  "BufWritePre",
+  "InsertLeave",
+}, {
   callback = function()
-    lint.try_lint()
+    require("lint").try_lint()
   end,
 })

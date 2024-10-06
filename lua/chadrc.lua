@@ -2,14 +2,14 @@
 local M = {}
 
 M.ui = {
-    theme = "catppuccin",
+  theme = "onedark",
+  lsp = { signature = false },
+  transparency = true,
 
-    transparency = true,
-
-    hl_override = {
-        Comment = { italic = true },
-        ["@comment"] = { italic = true },
-    },
+  hl_override = {
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
+  },
 }
 
 return M
