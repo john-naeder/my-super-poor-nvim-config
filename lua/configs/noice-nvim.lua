@@ -29,6 +29,13 @@ local options = {
       },
     },
   },
+  views = {
+    mini = {
+      win_options = {
+        winblend = 0,
+      },
+    },
+  },
 }
 
 return options

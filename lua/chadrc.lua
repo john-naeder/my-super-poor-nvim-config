@@ -1,8 +1,8 @@
 ---@type ChadrcConfig
 local M = {}
 
-M.ui = {
-  theme = "onedark",
+M.base46 = {
+	theme = "palenight",
   lsp = { signature = false },
   transparency = true,
 

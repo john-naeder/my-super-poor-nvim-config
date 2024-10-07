@@ -18,6 +18,14 @@ lint.linters.luacheck.args = {
   "-",
 }
 
+lint.linters.cpplint = {
+    cmd = 'cpplint',
+    command = 'cpplint',
+    args = {'--filter=-legal/copyright', '-', '$FILENAME'},
+    stdin = false,
+    ignore_exitcode = true,
+}
+
 vim.api.nvim_create_autocmd({
   "BufEnter",
   "BufWritePre",
