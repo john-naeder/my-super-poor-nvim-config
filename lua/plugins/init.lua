@@ -1,5 +1,13 @@
 return {
   {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup()
+    end,
+  },
+  {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {},
@@ -84,8 +92,8 @@ return {
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       require("inlay-hints").setup({
-        commands = { enable = true },
-        autocmd = { enable = true },
+        commands = { enable = false },
+        autocmd = { enable = false },
       })
     end,
   },

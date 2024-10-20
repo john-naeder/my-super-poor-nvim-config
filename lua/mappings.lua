@@ -1,7 +1,6 @@
 require("nvchad.mappings")
 
 -- add yours here
-
 local map = vim.keymap.set
 
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
@@ -16,15 +15,10 @@ map("n", "<leader>rcu", function()
 end, { desc = "Update crates" })
 
 -- line move
-
-map("n", "<A-j>", [[<cmd> m .+1<cr>==]], { desc = "Move line up" })
-map("n", "<A-k>", [[<cmd> m .-2<cr>==]], { desc = "Move line down" })
-map("v", "<A-j>", [[<cmd> m '<-2<cr>gv]], { desc = "Move lines up" })
-map("v", "<A-j>", [[<cmd> m '>+1<cr>gv]], { desc = "Move lines up" })
--- map("n", "<A-j>", ":silent m .+1<CR>==", { desc = "Move line up" })
--- map("n", "<A-k>", ":silent m .-2<CR>==", { desc = "Move line down" })
--- map("v", "<A-j>", ":silent m '>+1<CR>gv=gv", { desc = "Move lines up" })
--- map("v", "<A-k>", ":silent m '<-2<CR>gv=gv", { desc = "Move lines down" })
+map("n", "<A-j>", [[<cmd> m .+1<cr>==]], { desc = "Move line down" })
+map("n", "<A-k>", [[<cmd> m .-2<cr>==]], { desc = "Move line up" })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down", silent = true })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up", silent = true})
 
 -- Resize window
 map("n", "=", [[<cmd>vertical resize +5<cr>]])
@@ -51,7 +45,8 @@ map(
 map("n", "<leader>dr", dap.repl.open, { desc = "Open REPL" })
 map("n", "<leader>dl", dap.run_last, { desc = "Run Last Debug Session" })
 map("n", "<leader>dh", function()
-  require("dap.ui.widgets").hover() end, { desc = "DAP Hover" })
+  require("dap.ui.widgets").hover()
+end, { desc = "DAP Hover" })
 map("n", "<leader>dw", function()
   local widgets = require("dap.ui.widgets")
   widgets.centered_float(widgets.scopes)
