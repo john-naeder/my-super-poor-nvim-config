@@ -25,7 +25,14 @@ vim.g.rustaceanvim = {
         checkOnSave = {
           command = "clippy",
         },
-
+        assist = {
+          importGranularity = "module",
+          importPrefix = "by_self",
+        },
+        formatting = {
+          command = { "rustfmt" },
+          max_width = 80,
+        },
         inlayHints = {
           bindingModeHints = {
             enable = false,
