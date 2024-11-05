@@ -2,9 +2,9 @@
 local M = {}
 
 M.base46 = {
-	theme = "palenight",
+	theme = "chocolate",
   lsp = { signature = false },
-  transparency = true,
+  -- transparency = true,
 
   hl_override = {
     Comment = { italic = true },
