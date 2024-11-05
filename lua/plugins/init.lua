@@ -1,5 +1,23 @@
 return {
   {
+    "john-naeder/nvim-soil",
+    dependencies = { "javiorfo/nvim-nyctophilia" },
+    lazy = true,
+    ft = "plantuml",
+    opts = {
+      -- puml_jar = "/path/to/plantuml.jar",
+      image = {
+        scale = 2.0,
+        darkmode = true,
+        format = "png",
+        execute_to_open = function(img)
+          -- return "xdg-open " .. img
+          return "nsxiv -b " .. img
+        end,
+      },
+    },
+  },
+  {
     "kylechui/nvim-surround",
     version = "*",
     event = "VeryLazy",
