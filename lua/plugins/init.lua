@@ -9,7 +9,7 @@ return {
       image = {
         scale = 2.0,
         darkmode = true,
-        format = "png",
+        format = "svg",
         execute_to_open = function(img)
           -- return "xdg-open " .. img
           return "nsxiv -b " .. img

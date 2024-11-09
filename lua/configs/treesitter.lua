@@ -19,6 +19,7 @@ local options = {
     "yaml",
     "toml",
     "rust",
+    "proto",
   },
 
   highlight = {
