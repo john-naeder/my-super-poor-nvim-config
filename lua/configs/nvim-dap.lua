@@ -16,7 +16,8 @@ vim.fn.sign_define("DapStopped", {
 
 dap.adapters.lldb = {
   type = "executable",
-  command = "/usr/bin/lldb-dap",
+  command = require("env").system_name == "Window_NT" and "lldb-dap.exe"
+    or "/usr/bin/lldb-dap",
   name = "lldb",
 }
 

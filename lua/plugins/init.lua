@@ -7,12 +7,10 @@ return {
     opts = {
       -- puml_jar = "/path/to/plantuml.jar",
       image = {
-        scale = 2.0,
         darkmode = true,
         format = "svg",
         execute_to_open = function(img)
-          -- return "xdg-open " .. img
-          return "nsxiv -b " .. img
+          return require("env").system_name == "Windows_NT" and "jpeview" or "nsxiv -b" .. img
         end,
       },
     },

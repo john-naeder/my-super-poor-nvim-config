@@ -2,13 +2,12 @@ require("nvchad.options")
 
 local o = vim.o
 
-if vim.loop.os_uname().sysname == "Windows_NT" then
+if require("env").system_name == "Windows_NT" then
   o.shell = "powershell.exe"
   o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
   o.shellquote = ""
   o.shellxquote = ""
 else
-  -- Set Fish shell for Linux or other systems
   o.shell = "/usr/bin/fish"
 end
 
