@@ -5,12 +5,11 @@ return {
     lazy = true,
     ft = "plantuml",
     opts = {
-      -- puml_jar = "/path/to/plantuml.jar",
       image = {
         darkmode = true,
         format = "svg",
         execute_to_open = function(img)
-          return require("env").system_name == "Windows_NT" and "jpegview"
+          return require("env").system_name == "Windows_NT" and "start "
             or "nsxiv " .. img
         end,
       },
