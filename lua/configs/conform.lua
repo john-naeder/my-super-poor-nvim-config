@@ -5,6 +5,7 @@ local options = {
     cpp = { "clang-format" },
     python = { "isort", "black" },
     rust = { "rustfmt" },
+    c_sharp = { "csharpier" }
   },
 
   formatters = {
