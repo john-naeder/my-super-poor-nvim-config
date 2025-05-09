@@ -10,7 +10,8 @@ return {
         darkmode = true,
         format = "svg",
         execute_to_open = function(img)
-          return require("env").system_name == "Windows_NT" and "jpeview" or "nsxiv -b" .. img
+          return require("env").system_name == "Windows_NT" and "start "
+            or "nsxivb " .. img
         end,
       },
     },

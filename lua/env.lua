@@ -1,4 +1,4 @@
 local env = {
-  system = os.getenv("OS")
+  system_name = os.getenv("OS")
 }
 return env
