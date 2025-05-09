@@ -8,15 +8,19 @@ lspconfig.servers = {
   "pyright",
   "efm",
   "rust_analyzer",
+  "csharp_ls",
 }
 
 vim.diagnostic.config({ virtual_text = false })
 vim.o.updatetime = 300
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+vim.cmd(
+  [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+)
 
 -- list of servers configured with default config.
 local default_servers = {
   "pyright",
+  "csharp_ls",
 }
 
 -- lsps with default config

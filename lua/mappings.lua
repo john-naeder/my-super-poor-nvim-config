@@ -17,8 +17,13 @@ end, { desc = "Update crates" })
 -- line move
 map("n", "<A-j>", [[<cmd> m .+1<cr>==]], { desc = "Move line down" })
 map("n", "<A-k>", [[<cmd> m .-2<cr>==]], { desc = "Move line up" })
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down", silent = true })
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up", silent = true})
+map(
+  "v",
+  "<A-j>",
+  ":m '>+1<CR>gv=gv",
+  { desc = "Move line down", silent = true }
+)
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up", silent = true })
 
 -- Resize window
 map("n", "=", [[<cmd>vertical resize +5<cr>]])

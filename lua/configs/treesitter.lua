@@ -2,10 +2,11 @@ local options = {
   ensure_installed = {
     "bash",
     "c",
-    "make",
-    "cmake",
     "cpp",
+    "cmake",
+    "c_sharp",
     "objc",
+    "make",
     "fish",
     "lua",
     "luadoc",
