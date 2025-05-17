@@ -8,7 +8,7 @@ if require("env").system_name == "Windows_NT" then
   o.shellquote = ""
   o.shellxquote = ""
 else
-  o.shell = "/usr/bin/fish"
+  o.shell = "/usr/bin/zsh"
 end
 
 -- Indenting
@@ -17,4 +17,4 @@ o.tabstop = 2
 o.softtabstop = 2
 o.cursorlineopt = "both"
 o.relativenumber = true
-o.wrap = false
+o.wrap = true

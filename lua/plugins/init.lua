@@ -1,23 +1,19 @@
 return {
-  -- Efficient add-ons
   {
-    "smoka7/hop.nvim",
+    "john-naeder/nvim-soil",
+    dependencies = { "javiorfo/nvim-nyctophilia" },
+    ft = "plantuml",
     opts = {
-      keys = "etovxqpdygfblzhckisuran",
-      multi_window = true,
-      uppercase_labels = true,
-      -- puml_jar = "/path/to/plantuml.jar",
       image = {
         darkmode = true,
         format = "svg",
         execute_to_open = function(img)
-          return require("env").system_name == "Windows_NT" and "start "
-            or "nsxivb " .. img
+          return require("env").system_name == "Windows_NT" and "jpeview"
+            or "nsxiv -b" .. img
         end,
       },
     },
   },
-
   {
     "kylechui/nvim-surround",
     version = "*",
@@ -26,12 +22,22 @@ return {
       require("nvim-surround").setup()
     end,
   },
-
-  -- Beautify add-ons
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      timeout = 2500,
+      max_height = function()
+        return math.floor(vim.o.lines * 0.75)
+      end,
+      max_width = function()
+        return math.floor(vim.o.columns * 0.75)
+      end,
+      background_colour = "#000000",
+    },
+  },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    opts = {},
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
@@ -40,23 +46,6 @@ return {
       require("noice").setup(require("configs.noice-nvim"))
     end,
   },
-
-  {
-    "rcarriga/nvim-notify",
-    opts = {
-      timeout = 2500,
-      background_colour = "#000000",
-      stages = "fade_in_slide_out",
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.75)
-      end,
-    },
-  },
-
-  -- Lang support add-ons
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
@@ -139,6 +128,30 @@ return {
     end,
   },
 
+  -- Rust
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^5",
+    lazy = false,
+    ft = { "rust" },
+    config = function()
+      require("configs.rustaceanvim")
+    end,
+  },
+
+  {
+    "saecki/crates.nvim",
+    ft = { "toml" },
+    config = function(_, opts)
+      local crates = require("crates")
+      crates.setup(opts)
+      require("cmp").setup.buffer({
+        sources = { { name = "crates" } },
+      })
+      crates.show()
+    end,
+  },
+
   -- Dap
   {
     "mfussenegger/nvim-dap",
@@ -197,54 +210,13 @@ return {
     "nvim-neotest/nvim-nio",
   },
 
-  -- plantuml
+  -- Jump around
   {
-    "john-naeder/nvim-soil",
-    dependencies = { "javiorfo/nvim-nyctophilia" },
-    lazy = true,
-    ft = "plantuml",
+    "smoka7/hop.nvim",
     opts = {
-      image = {
-        darkmode = true,
-        format = "svg",
-        execute_to_open = function(img)
-          return require("env").system_name == "Windows_NT" and "start "
-            or "nsxiv " .. img
-        end,
-      },
+      keys = "etovxqpdygfblzhckisuran",
+      multi_window = true,
+      uppercase_labels = true,
     },
-  },
-
-  -- Rust
-  {
-    "mrcjkb/rustaceanvim",
-    version = "^5",
-    lazy = false,
-    ft = { "rust" },
-    config = function()
-      require("configs.rustaceanvim")
-    end,
-  },
-
-  {
-    "saecki/crates.nvim",
-    ft = { "toml" },
-    config = function(_, opts)
-      local crates = require("crates")
-      crates.setup(opts)
-      require("cmp").setup.buffer({
-        sources = { { name = "crates" } },
-      })
-      crates.show()
-    end,
-  },
-
-  -- Csharp
-  {
-    "GustavEikaas/easy-dotnet.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
-    config = function()
-      require("easy-dotnet").setup()
-    end,
   },
 }
