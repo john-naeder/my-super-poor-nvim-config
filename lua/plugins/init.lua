@@ -1,5 +1,136 @@
 return {
   {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+      "TmuxNavigatorProcessList",
+    },
+    event = "VeryLazy",
+    keys = {
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
+  {
+    "3rd/image.nvim",
+    -- Disabled for WSL/VSCode - these don't support graphics protocols
+    enabled = false,
+    ft = { 'markdown', 'quarto', 'vimwiki' },
+    dependencies = {
+      {
+        "vhyrro/luarocks.nvim",
+        priority = 1001,
+        opts = {
+          rocks = { "magick" },
+        },
+      },
+    },
+    config = function()
+      -- Check if WSL or VSCode terminal
+      local is_wsl = vim.fn.has('wsl') == 1 or vim.fn.readfile('/proc/version')[1]:match('microsoft')
+      local is_vscode = vim.env.VSCODE ~= nil or vim.env.TERM_PROGRAM == 'vscode'
+      
+      if is_wsl or is_vscode then
+        vim.notify(
+          "Image rendering not supported in WSL/VSCode terminal.\n" ..
+          "Use :MarkdownPreview to view images in browser instead.",
+          vim.log.levels.INFO
+        )
+        return
+      end
+      
+      -- Auto-detect best backend
+      local backend = "kitty"
+      
+      -- Check if in tmux
+      if vim.env.TMUX then
+        local handle = io.popen("tmux show -g allow-passthrough 2>/dev/null")
+        if handle then
+          local result = handle:read("*a")
+          handle:close()
+          if not result:match("on") then
+            vim.notify(
+              "Image rendering disabled: tmux needs 'set -g allow-passthrough on'.\n" ..
+              "Add to ~/.tmux.conf and reload: tmux source ~/.tmux.conf",
+              vim.log.levels.WARN
+            )
+            return
+          end
+        end
+      end
+      
+      -- Setup image.nvim with detected backend
+      require("image").setup({
+        backend = backend,
+        integrations = {
+          markdown = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+          },
+        },
+        max_width = nil,
+        max_height = nil,
+        max_width_window_percentage = nil,
+        max_height_window_percentage = 50,
+        window_overlap_clear_enabled = false,
+        window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+        editor_only_render_when_focused = false,
+        tmux_show_only_in_active_window = false,
+        hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg" },
+      })
+    end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = { "markdown" },
+    build = "cd app && npm install",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    keys = {
+      { "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview (Browser)", ft = "markdown" },
+    },
+    init = function()
+      -- Set config before plugin loads
+      vim.g.mkdp_auto_close = 0
+      vim.g.mkdp_open_to_the_world = 0
+      vim.g.mkdp_echo_preview_url = 1
+      vim.g.mkdp_theme = 'dark'
+      vim.g.mkdp_filetypes = { "markdown" }
+      
+      -- WSL: Use Firefox on Windows
+      if vim.fn.has('wsl') == 1 then
+        vim.g.mkdp_browser = '/mnt/c/Program Files/Mozilla Firefox/firefox.exe'
+      end
+    end,
+  },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 
+      'nvim-treesitter/nvim-treesitter', 
+      'nvim-tree/nvim-web-devicons',
+    },
+    ft = { 'markdown', 'quarto' },
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = function()
+      return require("configs.render-markdown")
+    end,
+    cmd = { 'RenderMarkdown' },
+    keys = {
+      { '<leader>mt', '<cmd>RenderMarkdown toggle<cr>', desc = 'Toggle Markdown Render', ft = 'markdown' },
+      { '<leader>me', '<cmd>RenderMarkdown enable<cr>', desc = 'Enable Markdown Render', ft = 'markdown' },
+      { '<leader>md', '<cmd>RenderMarkdown disable<cr>', desc = 'Disable Markdown Render', ft = 'markdown' },
+    },
+  },
+  {
     "john-naeder/nvim-soil",
     dependencies = { "javiorfo/nvim-nyctophilia" },
     ft = "plantuml",

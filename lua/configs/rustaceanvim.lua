@@ -1,10 +1,19 @@
 local nvlsp = require("nvchad.configs.lspconfig")
-local mason_registry = require("mason-registry")
-local codelldb = mason_registry.get_package("codelldb")
-codelldb:get_install_path()
-local extension_path = codelldb:get_install_path() .. "/extension/"
-local codelldb_path = extension_path .. "adapter/codelldb"
-local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+
+-- Safely get codelldb path
+local codelldb_path = nil
+local liblldb_path = nil
+
+local ok, mason_registry = pcall(require, "mason-registry")
+if ok then
+  local has_codelldb, codelldb = pcall(mason_registry.get_package, mason_registry, "codelldb")
+  if has_codelldb then
+    local install_path = codelldb:get_install_path()
+    local extension_path = install_path .. "/extension/"
+    codelldb_path = extension_path .. "adapter/codelldb"
+    liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+  end
+end
 
 vim.g.rustaceanvim = {
   server = {
@@ -67,9 +76,15 @@ vim.g.rustaceanvim = {
         },
       },
     },
+  },
+}
+
+-- Set up DAP adapter only if codelldb is available
+if codelldb_path and liblldb_path then
+  vim.g.rustaceanvim.dap = {
     adapter = require("rustaceanvim.config").get_codelldb_adapter(
       codelldb_path,
       liblldb_path
     ),
-  },
-}
+  }
+end

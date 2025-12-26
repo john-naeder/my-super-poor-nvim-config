@@ -1,38 +1,27 @@
 local nvlsp = require("nvchad.configs.lspconfig")
 
-local lspconfig = require("lspconfig")
-
-lspconfig.servers = {
-  "lua_ls",
-  "clangd",
-  "pyright",
-  "efm",
-  "rust_analyzer",
-  "csharp_ls",
-}
-
 vim.diagnostic.config({ virtual_text = false })
 vim.o.updatetime = 300
 vim.cmd(
   [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 )
 
--- list of servers configured with default config.
-local default_servers = {
-  "pyright",
-  "csharp_ls",
-}
+-- Configure pyright with default settings
+vim.lsp.config('pyright', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
 
--- lsps with default config
-for _, lsp in ipairs(default_servers) do
-  lspconfig[lsp].setup({
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  })
-end
+-- Configure csharp_ls with default settings
+vim.lsp.config('csharp_ls', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
 
-lspconfig.clangd.setup({
+-- Configure clangd with custom settings
+vim.lsp.config('clangd', {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
@@ -53,7 +42,8 @@ lspconfig.clangd.setup({
   },
 })
 
-lspconfig.efm.setup({
+-- Configure efm
+vim.lsp.config('efm', {
   init_options = { documentFormatting = true },
   filetypes = { "make" },
   settings = {
@@ -69,11 +59,11 @@ lspconfig.efm.setup({
   },
 })
 
-lspconfig.lua_ls.setup({
+-- Configure lua_ls with enhanced workspace settings
+vim.lsp.config('lua_ls', {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
-
   settings = {
     Lua = {
       diagnostics = {
@@ -94,3 +84,10 @@ lspconfig.lua_ls.setup({
     },
   },
 })
+
+-- Enable all configured language servers
+vim.lsp.enable('pyright')
+vim.lsp.enable('csharp_ls')
+vim.lsp.enable('clangd')
+vim.lsp.enable('efm')
+vim.lsp.enable('lua_ls')

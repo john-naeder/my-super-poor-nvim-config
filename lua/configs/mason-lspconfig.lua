@@ -1,4 +1,12 @@
-local lspconfig = package.loaded["lspconfig"]
+-- List of LSP servers to install
+local servers = {
+  "lua_ls",
+  "clangd",
+  "pyright",
+  "efm",
+  "rust_analyzer",
+  "csharp_ls",
+}
 
 -- List of servers to ignore during install
 local ignore_install = {}
@@ -15,7 +23,7 @@ end
 
 -- Build a list of lsp servers to install minus the ignored list.
 local all_servers = {}
-for _, s in ipairs(lspconfig.servers) do
+for _, s in ipairs(servers) do
   if not table_contains(ignore_install, s) then
     table.insert(all_servers, s)
   end

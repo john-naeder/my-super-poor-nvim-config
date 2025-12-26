@@ -3,7 +3,8 @@ require("nvchad.mappings")
 -- add yours here
 local map = vim.keymap.set
 
-map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+-- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
 map("i", "jk", "<ESC>")
 map({ "n", "x", "o" }, "<leader>fj", function()
   require("hop").hint_words()
@@ -15,8 +16,8 @@ map("n", "<leader>rcu", function()
 end, { desc = "Update crates" })
 
 -- line move
-map("n", "<A-j>", [[<cmd> m .+1<cr>==]], { desc = "Move line down" })
 map("n", "<A-k>", [[<cmd> m .-2<cr>==]], { desc = "Move line up" })
+map("n", "<A-j>", [[<cmd> m .+1<cr>==]], { desc = "Move line down" })
 map(
   "v",
   "<A-j>",
@@ -66,3 +67,50 @@ map("n", "<leader>dq", function()
   end
   require("dapui").close()
 end, { desc = "Quit All DAP UI" })
+
+ -- -- Tmux navigation
+-- map(
+--   "n",
+--   "<c-h>",
+--   "<cmd> TmuxNavigateLeft<cr>",
+--   { desc = "Navigate Left (Tmux/Vim)" }
+-- )
+-- map(
+--   "n",
+--   "<c-j>",
+--   "<cmd> TmuxNavigateDown<cr>",
+--   { desc = "Navigate Down (Tmux/Vim)" }
+-- )
+-- map(
+--   "n",
+--   "<c-k>",
+--   "<cmd> TmuxNavigateUp<cr>",
+--   { desc = "Navigate Up (Tmux/Vim)" }
+-- )
+-- map(
+--   "n",
+--   "<c-l>",
+--   "<cmd> TmuxNavigateRight<cr>",
+--   { desc = "Navigate Right (Tmux/Vim)" }
+-- )
+-- map(
+--   "n",
+--   "<c-\\>",
+--   "<cmd> TmuxNavigatePrevious<cr>",
+--   { desc = "Navigate Previous (Tmux/Vim)" }
+-- )
+
+-- Render Markdown mappings (for markdown files)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "quarto" },
+  callback = function()
+    -- Render markdown in buffer
+    map("n", "<leader>mt", "<cmd>RenderMarkdown toggle<cr>", { desc = "Toggle Markdown Render", buffer = true })
+    map("n", "<leader>me", "<cmd>RenderMarkdown enable<cr>", { desc = "Enable Markdown Render", buffer = true })
+    map("n", "<leader>md", "<cmd>RenderMarkdown disable<cr>", { desc = "Disable Markdown Render", buffer = true })
+    
+    -- Preview in browser (for images and full preview)
+    map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Preview in Browser", buffer = true })
+    map("n", "<leader>ms", "<cmd>MarkdownPreviewStop<cr>", { desc = "Stop Preview", buffer = true })
+  end,
+})
