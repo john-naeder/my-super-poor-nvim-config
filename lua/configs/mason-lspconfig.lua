@@ -6,6 +6,7 @@ local servers = {
   "efm",
   "rust_analyzer",
   "csharp_ls",
+  "ts_ls",
 }
 
 -- List of servers to ignore during install

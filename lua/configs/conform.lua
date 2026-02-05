@@ -5,7 +5,14 @@ local options = {
     cpp = { "clang-format" },
     python = { "isort", "black" },
     rust = { "rustfmt" },
-    c_sharp = { "csharpier" }
+    c_sharp = { "csharpier" },
+    javascript = { "prettier" },
+    javascriptreact = { "prettier" },
+    typescript = { "prettier" },
+    typescriptreact = { "prettier" },
+    json = { "prettier" },
+    css = { "prettier" },
+    html = { "prettier" },
   },
 
   formatters = {
@@ -49,6 +56,17 @@ local options = {
       prepend_args = {
         "--profile",
         "black",
+      },
+    },
+    -- JavaScript/TypeScript
+    prettier = {
+      prepend_args = {
+        "--print-width",
+        "80",
+        "--tab-width",
+        "2",
+        "--use-tabs",
+        "false",
       },
     },
   },

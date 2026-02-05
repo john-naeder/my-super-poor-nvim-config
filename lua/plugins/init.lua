@@ -91,23 +91,16 @@ return {
   },
   {
     "iamcco/markdown-preview.nvim",
+    build = ":call mkdp#util#install()",
     ft = { "markdown" },
-    build = "cd app && npm install",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    keys = {
-      { "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview (Browser)", ft = "markdown" },
-    },
     init = function()
-      -- Set config before plugin loads
       vim.g.mkdp_auto_close = 0
-      vim.g.mkdp_open_to_the_world = 0
       vim.g.mkdp_echo_preview_url = 1
       vim.g.mkdp_theme = 'dark'
-      vim.g.mkdp_filetypes = { "markdown" }
       
-      -- WSL: Use Firefox on Windows
       if vim.fn.has('wsl') == 1 then
-        vim.g.mkdp_browser = '/mnt/c/Program Files/Mozilla Firefox/firefox.exe'
+        vim.g.mkdp_browser = 'firefox'
       end
     end,
   },

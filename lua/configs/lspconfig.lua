@@ -85,9 +85,17 @@ vim.lsp.config('lua_ls', {
   },
 })
 
+-- Configure ts_ls (TypeScript Language Server)
+vim.lsp.config('ts_ls', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
+
 -- Enable all configured language servers
 vim.lsp.enable('pyright')
 vim.lsp.enable('csharp_ls')
 vim.lsp.enable('clangd')
 vim.lsp.enable('efm')
 vim.lsp.enable('lua_ls')
+vim.lsp.enable('ts_ls')
