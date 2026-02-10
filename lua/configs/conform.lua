@@ -6,13 +6,29 @@ local options = {
     python = { "isort", "black" },
     rust = { "rustfmt" },
     c_sharp = { "csharpier" },
+    -- Web Development
     javascript = { "prettier" },
     javascriptreact = { "prettier" },
     typescript = { "prettier" },
     typescriptreact = { "prettier" },
     json = { "prettier" },
+    jsonc = { "prettier" },
     css = { "prettier" },
     html = { "prettier" },
+    markdown = { "prettier" },
+    -- DevOps
+    yaml = { "prettier" },
+    ["yaml.ansible"] = { "prettier" },
+    dockerfile = { "prettier" },
+    terraform = { "terraform_fmt" },
+    ["terraform-vars"] = { "terraform_fmt" },
+    hcl = { "terraform_fmt" },
+    sh = { "shfmt" },
+    bash = { "shfmt" },
+    zsh = { "shfmt" },
+    toml = { "taplo" },
+    xml = { "xmlformat" },
+    graphql = { "prettier" },
   },
 
   formatters = {
@@ -67,6 +83,14 @@ local options = {
         "2",
         "--use-tabs",
         "false",
+      },
+    },
+    -- Shell scripts
+    shfmt = {
+      prepend_args = {
+        "-i",
+        "2",
+        "-ci",
       },
     },
   },

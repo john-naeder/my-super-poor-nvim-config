@@ -92,6 +92,97 @@ vim.lsp.config('ts_ls', {
   capabilities = nvlsp.capabilities,
 })
 
+-- Configure yamlls (YAML Language Server)
+vim.lsp.config('yamlls', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = "**/playbooks/*.{yml,yaml}",
+        ["https://json.schemastore.org/docker-compose.json"] = "**/docker-compose*.{yml,yaml}",
+        ["https://json.schemastore.org/kustomization.json"] = "kustomization.{yml,yaml}",
+        ["https://json.schemastore.org/chart.json"] = "Chart.{yml,yaml}",
+        kubernetes = "/*.k8s.{yml,yaml}",
+      },
+      validate = true,
+      completion = true,
+      hover = true,
+    },
+  },
+})
+
+-- Configure jsonls (JSON Language Server)
+vim.lsp.config('jsonls', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    json = {
+      schemas = require("schemastore").json.schemas(),
+      validate = { enable = true },
+    },
+  },
+})
+
+-- Configure dockerls (Docker Language Server)
+vim.lsp.config('dockerls', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
+
+-- Configure docker_compose_language_service
+vim.lsp.config('docker_compose_language_service', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
+
+-- Configure terraformls (Terraform Language Server)
+vim.lsp.config('terraformls', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
+
+-- Configure ansiblels (Ansible Language Server)
+vim.lsp.config('ansiblels', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
+
+-- Configure bashls (Bash Language Server)
+vim.lsp.config('bashls', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
+
+-- Configure html
+vim.lsp.config('html', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
+
+-- Configure cssls
+vim.lsp.config('cssls', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
+
+-- Configure tailwindcss
+vim.lsp.config('tailwindcss', {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+})
+
 -- Enable all configured language servers
 vim.lsp.enable('pyright')
 vim.lsp.enable('csharp_ls')
@@ -99,3 +190,13 @@ vim.lsp.enable('clangd')
 vim.lsp.enable('efm')
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('ts_ls')
+vim.lsp.enable('yamlls')
+vim.lsp.enable('jsonls')
+vim.lsp.enable('dockerls')
+vim.lsp.enable('docker_compose_language_service')
+vim.lsp.enable('terraformls')
+vim.lsp.enable('ansiblels')
+vim.lsp.enable('bashls')
+vim.lsp.enable('html')
+vim.lsp.enable('cssls')
+vim.lsp.enable('tailwindcss')

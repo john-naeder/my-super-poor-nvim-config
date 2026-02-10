@@ -7,6 +7,17 @@ local servers = {
   "rust_analyzer",
   "csharp_ls",
   "ts_ls",
+  -- DevOps
+  "yamlls",
+  "jsonls",
+  "dockerls",
+  "docker_compose_language_service",
+  "terraformls",
+  "ansiblels",
+  "bashls",
+  "html",
+  "cssls",
+  "tailwindcss",
 }
 
 -- List of servers to ignore during install

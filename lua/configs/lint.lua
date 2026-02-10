@@ -5,6 +5,15 @@ lint.linters_by_ft = {
   python = { "flake8" },
   cpp = { "cpplint" },
   c = { "cpplint" },
+  -- DevOps
+  yaml = { "yamllint" },
+  terraform = { "tflint" },
+  ["terraform-vars"] = { "tflint" },
+  sh = { "shellcheck" },
+  bash = { "shellcheck" },
+  dockerfile = { "hadolint" },
+  json = { "jsonlint" },
+  markdown = { "markdownlint" },
 }
 
 lint.linters.luacheck.args = {

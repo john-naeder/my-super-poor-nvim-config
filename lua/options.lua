@@ -89,3 +89,19 @@ if vim.fn.has('wsl') == 1 then
     end
   end
 end
+
+-- OSC 52 clipboard for seamless copy across SSH/tmux sessions
+-- Works with Neovim 0.10+
+if vim.fn.has('nvim-0.10') == 1 then
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+      ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    },
+  }
+end

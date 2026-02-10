@@ -343,4 +343,10 @@ return {
       uppercase_labels = true,
     },
   },
+
+  -- JSON/YAML Schema Store
+  {
+    "b0o/schemastore.nvim",
+    lazy = true,
+  },
 }

@@ -21,6 +21,26 @@ local options = {
     "toml",
     "rust",
     "proto",
+    -- Web Development
+    "javascript",
+    "typescript",
+    "tsx",
+    "json",
+    "jsonc",
+    "html",
+    "css",
+    "scss",
+    "graphql",
+    -- DevOps
+    "dockerfile",
+    "hcl",
+    "terraform",
+    "xml",
+    "regex",
+    "diff",
+    "gitignore",
+    "git_config",
+    "git_rebase",
   },
 
   highlight = {

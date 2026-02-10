@@ -2,6 +2,7 @@ local lint = package.loaded["lint"]
 
 local ignore_install = {
   "clippy",
+  "hadolint", -- Install via: brew install hadolint or scoop install hadolint
 }
 
 local function table_contains(table, value)
@@ -17,6 +18,11 @@ local all_linters = {
   "cpplint",
   "flake8",
   "luacheck",
+  "yamllint",
+  "shellcheck",
+  "jsonlint",
+  "markdownlint",
+  "tflint",
 }
 
 for _, v in pairs(lint.linters_by_ft) do
