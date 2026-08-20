@@ -5,7 +5,7 @@ local options = {
     cpp = { "clang-format" },
     python = { "isort", "black" },
     rust = { "rustfmt" },
-    c_sharp = { "csharpier" },
+    -- c_sharp = { "csharpier" },
     -- Web Development
     javascript = { "prettier" },
     javascriptreact = { "prettier" },

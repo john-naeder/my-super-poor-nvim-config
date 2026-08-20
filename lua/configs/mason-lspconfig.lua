@@ -5,7 +5,7 @@ local servers = {
   "pyright",
   "efm",
   "rust_analyzer",
-  "csharp_ls",
+  -- "csharp_ls",
   "ts_ls",
   -- DevOps
   "yamlls",

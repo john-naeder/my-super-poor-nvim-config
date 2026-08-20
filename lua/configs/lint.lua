@@ -5,13 +5,19 @@ lint.linters_by_ft = {
   python = { "flake8" },
   cpp = { "cpplint" },
   c = { "cpplint" },
+
   -- DevOps
   yaml = { "yamllint" },
+  ["yaml.ansible"] = { "ansible_lint" },
+
   terraform = { "tflint" },
   ["terraform-vars"] = { "tflint" },
+
   sh = { "shellcheck" },
   bash = { "shellcheck" },
+
   dockerfile = { "hadolint" },
+
   json = { "jsonlint" },
   markdown = { "markdownlint" },
 }
@@ -28,11 +34,11 @@ lint.linters.luacheck.args = {
 }
 
 lint.linters.cpplint = {
-    cmd = 'cpplint',
-    command = 'cpplint',
-    args = {'--filter=-legal/copyright', '-', '$FILENAME'},
-    stdin = false,
-    ignore_exitcode = true,
+  cmd = "cpplint",
+  command = "cpplint",
+  args = { "--filter=-legal/copyright", "-", "$FILENAME" },
+  stdin = false,
+  ignore_exitcode = true,
 }
 
 vim.api.nvim_create_autocmd({

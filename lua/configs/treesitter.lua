@@ -4,7 +4,7 @@ local options = {
     "c",
     "cpp",
     "cmake",
-    "c_sharp",
+    "csharp",
     "objc",
     "make",
     "fish",
@@ -51,4 +51,13 @@ local options = {
   indent = { enable = true },
 }
 
-require("nvim-treesitter.configs").setup(options)
+local ok, configs = pcall(require, "nvim-treesitter.configs")
+if not ok then
+  vim.notify(
+    "nvim-treesitter is not available. Run :Lazy sync to install/update it.",
+    vim.log.levels.ERROR
+  )
+  return
+end
+
+configs.setup(options)

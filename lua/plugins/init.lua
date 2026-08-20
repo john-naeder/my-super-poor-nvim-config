@@ -124,21 +124,6 @@ return {
     },
   },
   {
-    "john-naeder/nvim-soil",
-    dependencies = { "javiorfo/nvim-nyctophilia" },
-    ft = "plantuml",
-    opts = {
-      image = {
-        darkmode = true,
-        format = "svg",
-        execute_to_open = function(img)
-          return require("env").system_name == "Windows_NT" and "jpeview"
-            or "nsxiv -b" .. img
-        end,
-      },
-    },
-  },
-  {
     "kylechui/nvim-surround",
     version = "*",
     event = "VeryLazy",

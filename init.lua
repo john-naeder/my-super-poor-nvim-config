@@ -1,5 +1,6 @@
 vim.g.base46_cache = vim.fn.stdpath("data") .. "/nvchad/base46/"
 vim.g.mapleader = " "
+vim.g.kitty_keyboard_protocol = false
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 

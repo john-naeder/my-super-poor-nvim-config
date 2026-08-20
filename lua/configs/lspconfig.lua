@@ -7,21 +7,21 @@ vim.cmd(
 )
 
 -- Configure pyright with default settings
-vim.lsp.config('pyright', {
+vim.lsp.config("pyright", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 })
 
--- Configure csharp_ls with default settings
-vim.lsp.config('csharp_ls', {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-})
+-- -- Configure csharp_ls with default settings
+-- vim.lsp.config('csharp_ls', {
+--   on_attach = nvlsp.on_attach,
+--   on_init = nvlsp.on_init,
+--   capabilities = nvlsp.capabilities,
+-- })
 
 -- Configure clangd with custom settings
-vim.lsp.config('clangd', {
+vim.lsp.config("clangd", {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
@@ -43,7 +43,7 @@ vim.lsp.config('clangd', {
 })
 
 -- Configure efm
-vim.lsp.config('efm', {
+vim.lsp.config("efm", {
   init_options = { documentFormatting = true },
   filetypes = { "make" },
   settings = {
@@ -60,7 +60,7 @@ vim.lsp.config('efm', {
 })
 
 -- Configure lua_ls with enhanced workspace settings
-vim.lsp.config('lua_ls', {
+vim.lsp.config("lua_ls", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
@@ -86,14 +86,14 @@ vim.lsp.config('lua_ls', {
 })
 
 -- Configure ts_ls (TypeScript Language Server)
-vim.lsp.config('ts_ls', {
+vim.lsp.config("ts_ls", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 })
 
 -- Configure yamlls (YAML Language Server)
-vim.lsp.config('yamlls', {
+vim.lsp.config("yamlls", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
@@ -115,7 +115,7 @@ vim.lsp.config('yamlls', {
 })
 
 -- Configure jsonls (JSON Language Server)
-vim.lsp.config('jsonls', {
+vim.lsp.config("jsonls", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
@@ -128,75 +128,75 @@ vim.lsp.config('jsonls', {
 })
 
 -- Configure dockerls (Docker Language Server)
-vim.lsp.config('dockerls', {
+vim.lsp.config("dockerls", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 })
 
 -- Configure docker_compose_language_service
-vim.lsp.config('docker_compose_language_service', {
+vim.lsp.config("docker_compose_language_service", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 })
 
 -- Configure terraformls (Terraform Language Server)
-vim.lsp.config('terraformls', {
+vim.lsp.config("terraformls", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 })
 
 -- Configure ansiblels (Ansible Language Server)
-vim.lsp.config('ansiblels', {
+vim.lsp.config("ansiblels", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 })
 
 -- Configure bashls (Bash Language Server)
-vim.lsp.config('bashls', {
+vim.lsp.config("bashls", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 })
 
 -- Configure html
-vim.lsp.config('html', {
+vim.lsp.config("html", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 })
 
 -- Configure cssls
-vim.lsp.config('cssls', {
+vim.lsp.config("cssls", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 })
 
 -- Configure tailwindcss
-vim.lsp.config('tailwindcss', {
+vim.lsp.config("tailwindcss", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
 })
 
 -- Enable all configured language servers
-vim.lsp.enable('pyright')
-vim.lsp.enable('csharp_ls')
-vim.lsp.enable('clangd')
-vim.lsp.enable('efm')
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('ts_ls')
-vim.lsp.enable('yamlls')
-vim.lsp.enable('jsonls')
-vim.lsp.enable('dockerls')
-vim.lsp.enable('docker_compose_language_service')
-vim.lsp.enable('terraformls')
-vim.lsp.enable('ansiblels')
-vim.lsp.enable('bashls')
-vim.lsp.enable('html')
-vim.lsp.enable('cssls')
-vim.lsp.enable('tailwindcss')
+vim.lsp.enable("pyright")
+-- vim.lsp.enable("csharp_ls")
+vim.lsp.enable("clangd")
+vim.lsp.enable("efm")
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("yamlls")
+vim.lsp.enable("jsonls")
+vim.lsp.enable("dockerls")
+vim.lsp.enable("docker_compose_language_service")
+vim.lsp.enable("terraformls")
+vim.lsp.enable("ansiblels")
+vim.lsp.enable("bashls")
+vim.lsp.enable("html")
+vim.lsp.enable("cssls")
+vim.lsp.enable("tailwindcss")

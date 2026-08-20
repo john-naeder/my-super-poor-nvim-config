@@ -3,6 +3,7 @@ local lint = package.loaded["lint"]
 local ignore_install = {
   "clippy",
   "hadolint", -- Install via: brew install hadolint or scoop install hadolint
+  "luacheck",
 }
 
 local function table_contains(table, value)
