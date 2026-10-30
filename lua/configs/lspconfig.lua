@@ -114,6 +114,22 @@ vim.lsp.config("yamlls", {
   },
 })
 
+-- Configure helm_ls (Helm Language Server)
+-- It runs yaml-language-server internally for the YAML parts of templates,
+-- so yamlls itself never attaches to `helm` buffers.
+vim.lsp.config("helm_ls", {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    ["helm-ls"] = {
+      yamlls = {
+        path = "yaml-language-server",
+      },
+    },
+  },
+})
+
 -- Configure jsonls (JSON Language Server)
 vim.lsp.config("jsonls", {
   on_attach = nvlsp.on_attach,
@@ -191,6 +207,7 @@ vim.lsp.enable("efm")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("yamlls")
+vim.lsp.enable("helm_ls")
 vim.lsp.enable("jsonls")
 vim.lsp.enable("dockerls")
 vim.lsp.enable("docker_compose_language_service")

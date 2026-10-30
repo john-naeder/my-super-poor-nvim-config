@@ -9,6 +9,7 @@ local servers = {
   "ts_ls",
   -- DevOps
   "yamlls",
+  "helm_ls",
   "jsonls",
   "dockerls",
   "docker_compose_language_service",

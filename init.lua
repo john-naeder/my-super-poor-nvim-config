@@ -41,6 +41,16 @@ dofile(vim.g.base46_cache .. "statusline")
 
 require("nvchad.autocmds")
 
+vim.api.nvim_create_autocmd({ "RecordingEnter", "RecordingLeave" }, {
+  group = vim.api.nvim_create_augroup("MacroRecordingStatus", { clear = true }),
+  callback = function()
+    -- RecordingLeave fires before reg_recording() is cleared.
+    vim.schedule(function()
+      vim.cmd.redrawstatus()
+    end)
+  end,
+})
+
 vim.schedule(function()
   require("mappings")
 end)

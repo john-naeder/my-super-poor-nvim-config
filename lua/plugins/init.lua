@@ -153,11 +153,27 @@ return {
     },
     config = function()
       require("noice").setup(require("configs.noice-nvim"))
+
+      -- The output split keeps old messages; clear it before each `:!cmd`
+      -- so it only shows the latest run (full log stays in :Noice history).
+      vim.api.nvim_create_autocmd("CmdlineLeave", {
+        group = vim.api.nvim_create_augroup("NoiceShellOutput", { clear = true }),
+        callback = function()
+          if vim.v.event.abort or vim.fn.getcmdtype() ~= ":" then
+            return
+          end
+          if vim.fn.getcmdline():match("^%s*!") then
+            require("noice").cmd("dismiss")
+          end
+        end,
+      })
     end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
+    branch = "main",
+    lazy = false, -- main branch does not support lazy-loading
+    build = ":TSUpdate",
     config = function()
       require("configs.treesitter")
     end,

@@ -15,6 +15,10 @@ map("n", "<leader>rcu", function()
   require("crates").upgrade_all_crates()
 end, { desc = "Update crates" })
 
+map("n", "<leader>co", "<cmd>Noice history<CR>", { desc = "Show command output history" })
+map("n", "<leader>cl", "<cmd>Noice last<CR>", { desc = "Show last command output" })
+map("n", "<leader>cx", "<cmd>Noice dismiss<CR>", { desc = "Clear command output / popups" })
+
 -- line move
 map("n", "<A-k>", [[<cmd> m .-2<cr>==]], { desc = "Move line up" })
 map("n", "<A-j>", [[<cmd> m .+1<cr>==]], { desc = "Move line down" })
@@ -68,7 +72,7 @@ map("n", "<leader>dq", function()
   require("dapui").close()
 end, { desc = "Quit All DAP UI" })
 
- -- -- Tmux navigation
+-- -- Tmux navigation
 -- map(
 --   "n",
 --   "<c-h>",
@@ -105,12 +109,37 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown", "quarto" },
   callback = function()
     -- Render markdown in buffer
-    map("n", "<leader>mt", "<cmd>RenderMarkdown toggle<cr>", { desc = "Toggle Markdown Render", buffer = true })
-    map("n", "<leader>me", "<cmd>RenderMarkdown enable<cr>", { desc = "Enable Markdown Render", buffer = true })
-    map("n", "<leader>md", "<cmd>RenderMarkdown disable<cr>", { desc = "Disable Markdown Render", buffer = true })
-    
+    map(
+      "n",
+      "<leader>mt",
+      "<cmd>RenderMarkdown toggle<cr>",
+      { desc = "Toggle Markdown Render", buffer = true }
+    )
+    map(
+      "n",
+      "<leader>me",
+      "<cmd>RenderMarkdown enable<cr>",
+      { desc = "Enable Markdown Render", buffer = true }
+    )
+    map(
+      "n",
+      "<leader>md",
+      "<cmd>RenderMarkdown disable<cr>",
+      { desc = "Disable Markdown Render", buffer = true }
+    )
+
     -- Preview in browser (for images and full preview)
-    map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Preview in Browser", buffer = true })
-    map("n", "<leader>ms", "<cmd>MarkdownPreviewStop<cr>", { desc = "Stop Preview", buffer = true })
+    map(
+      "n",
+      "<leader>mp",
+      "<cmd>MarkdownPreviewToggle<cr>",
+      { desc = "Preview in Browser", buffer = true }
+    )
+    map(
+      "n",
+      "<leader>ms",
+      "<cmd>MarkdownPreviewStop<cr>",
+      { desc = "Stop Preview", buffer = true }
+    )
   end,
 })
