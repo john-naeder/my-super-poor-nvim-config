@@ -322,7 +322,6 @@ return {
     opts = {
       ensure_installed = {
         "codelldb",
-        "lldb-vscode",
         "debugpy",
       },
       automatic_installation = true,

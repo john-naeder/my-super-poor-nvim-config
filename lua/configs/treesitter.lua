@@ -1,48 +1,7 @@
 -- nvim-treesitter `main` branch: it only installs parsers/queries.
 -- Highlighting, folding and indent are started per buffer below.
 -- Parsers are compiled with `tree-sitter` CLI (Mason package `tree-sitter-cli`).
-local ensure_installed = {
-  "bash",
-  "c",
-  "cpp",
-  "cmake",
-  "c_sharp",
-  "objc",
-  "make",
-  "fish",
-  "lua",
-  "luadoc",
-  "python",
-  "toml",
-  "vim",
-  "vimdoc",
-  "markdown",
-  "markdown_inline",
-  "yaml",
-  "rust",
-  "proto",
-  -- Web Development
-  "javascript",
-  "typescript",
-  "tsx",
-  "json",
-  "html",
-  "css",
-  "scss",
-  "graphql",
-  -- DevOps
-  "dockerfile",
-  "hcl",
-  "terraform",
-  "xml",
-  "regex",
-  "diff",
-  "gitignore",
-  "git_config",
-  "git_rebase",
-  "gotmpl",
-  "helm",
-}
+local ensure_installed = require("configs.treesitter-parsers")
 
 local ok, ts = pcall(require, "nvim-treesitter")
 if not ok then
